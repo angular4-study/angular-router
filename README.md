@@ -18,8 +18,12 @@
       - 2.页面传值写成：<a [routerLink]="['/product',2]" >商品详情</a>
       - 3.Controller中取值写成：this.productId = this.routeInfo.snapshot.params["id"];或者this.routeInfo.params.subscribe((myparams:Params) => this.productId = myparams["id"]);
     - 在路由时传递数据：3.路由配置中传   {path:'/product',component:ProductComponent,data:[{isMan:true}]} => ActivatedRoute.data[0][isMan]
-
-
+  - 重定向路由：{path: '',redirectTo:'/home',pathMatch:'full'}
+  - 辅助路由：给当前插座加一个弟弟
+    - 1. 在需要辅助的页面中：<router-outlet></router-outlet><router-outlet name="mybrother"></router-outlet>
+    - 2. 在路由配置中：{path: 'xxx',component:XxxComponent,outlet: 'mybrother'}{path: 'yyy',component:YyyComponent,outlet: 'mybrother'} 指定了mybrother这个插座可以插入xxx和yyy路由
+    - 3. 在需要辅助的页面的父页面：<a [routerLink]="['/home',{outlet:{mybrother:'xxx'}}]">Xxx</a><a [routerLink]="['/product',{outlet:{mybrother:'yyy'}}]">Yyy</a>
+    - 4. 如果把1改成<a [routerLink]="[{outlets:{primary:'home' ,aux:'chat'}}]">开始聊天</a>则表示在插入chat组件时，不管当前在哪个路由，都转到默认(primary)路由上
 # AngularRouter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.

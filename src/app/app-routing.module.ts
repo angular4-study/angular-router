@@ -8,10 +8,18 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {ProductComponent} from "./product/product.component";
 import {Code404Component} from "./code404/code404.component";
+import {ProductDescComponent} from "./product-desc/product-desc.component";
+import {SellerInfoComponent} from "./seller-info/seller-info.component";
+import {ChatComponent} from "./chat/chat.component";
 
 const routes: Routes = [
-  {path: '',component:HomeComponent},//第一个路由配置,不需要用斜杠开头
-  {path: 'product/:id',component:ProductComponent},
+  {path: '',redirectTo:'/home',pathMatch:'full'},//当访问空字符串路径时，重定向到/home
+  {path: 'home',component:HomeComponent},//不需要用斜杠开头
+  {path: 'chat',component:ChatComponent,outlet:'aux'},//辅助路由：outlet定义路由要显示的插座的name属性
+  {path: 'product/:id',component:ProductComponent,children:[//配置子路由
+    {path:'',component:ProductDescComponent},
+    {path:'seller/:id',component:SellerInfoComponent}
+  ]},
   {path:'**',component:Code404Component}//通配符，匹配所有路由，但是由于路由是从上往下找，所以可以用来做404配置，但是必须放在所有路由的最后面
 ];
 

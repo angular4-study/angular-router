@@ -4,12 +4,15 @@
     Welcome to {{title}}!
   </h1>
   <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-  <a [routerLink]="['/']">主页</a>
+  <a [routerLink]="['/home']">主页</a>
   <!-- queryParams在路由参数中传递数据
   <a [routerLink]="['/product']" [queryParams]="{id:1}">商品详情</a>-->
   <a [routerLink]="['/product',2]" >商品详情</a>
   <!-- 事件绑定：click事件由控制器的toProductDetails方法来处理-->
   <input type="button" value="商品详情" (click)="toProductDetails()">
+  <!-- primary:默认路由。不管当前在哪个路由，都会跳到默认的路由上 -->
+  <a [routerLink]="[{outlets:{primary:'home' ,aux:'chat'}}]">开始聊天</a>
+  <a [routerLink]="[{outlets:{aux:null}}]" >结束聊天</a>
 </div>
 <h2>Here are some links to help you start: </h2>
 <ul>
@@ -24,3 +27,4 @@
   </li>
 </ul>
 <router-outlet></router-outlet>
+<router-outlet name="aux"></router-outlet>
