@@ -27,3 +27,13 @@ export class ProductComponent implements OnInit {
   }
 
 }
+
+/**
+ * 自定义一个Product类
+ */
+export class Product {
+
+  constructor(public id : number,public name : string){
+
+  }
+}
