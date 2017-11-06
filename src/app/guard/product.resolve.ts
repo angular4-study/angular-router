@@ -5,7 +5,7 @@ import {Observable} from "rxjs/Observable";
 
 //只有被装饰了，private router才能被注入进来
 
-@Injectable
+@Injectable()
 export class ProductResolve implements Resolve<Product> {
 
   constructor(private router: Router){

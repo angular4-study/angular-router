@@ -7,7 +7,7 @@
   <a [routerLink]="['/home']">主页</a>
   <!-- queryParams在路由参数中传递数据
   <a [routerLink]="['/product']" [queryParams]="{id:1}">商品详情</a>-->
-  <a [routerLink]="['/product',2]" >商品详情</a>
+  <a [routerLink]="['/product',1]" >商品详情</a>
   <!-- 事件绑定：click事件由控制器的toProductDetails方法来处理-->
   <input type="button" value="商品详情" (click)="toProductDetails()">
   <!-- primary:默认路由。不管当前在哪个路由，都会跳到默认的路由上 -->

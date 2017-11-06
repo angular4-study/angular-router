@@ -10,6 +10,7 @@ export class ProductComponent implements OnInit {
 
   //2.声明一个属性，来接收路由中传递的参数
   private productId:number;
+  private productName:string;
 
   //1.初始化时，声明一个叫routeInfo的变量，类型是ActivatedRoute，相当于每次实例化时，都拿到当前组件的路由对象
   constructor(private routeInfo: ActivatedRoute) {
@@ -24,6 +25,10 @@ export class ProductComponent implements OnInit {
     //this.productId = this.routeInfo.snapshot.params["id"];//路由中（url）传，取值方式
     //二。（如果组件可能会自己路由到自己）参数订阅来获得参数
     this.routeInfo.params.subscribe((myparams:Params) => this.productId = myparams["id"]);
+    this,this.routeInfo.data.subscribe((data: {product: Product}) => {
+      this.productId = data.product.id;
+      this.productName = data.product.name;
+    });
   }
 
 }
